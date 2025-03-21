@@ -17,8 +17,8 @@ public class ConstantRequestMock extends BaseSimulation {
     {
         setUp(
                 listScenario.injectOpen(
-                        rampUsers(cntUsers).during(rumpTime), // Исправлено на rampUsers
-                        constantUsersPerSec(cntUsers).during(stepTime)
+                        rampUsersPerSec(1).to(cntUsers).during(rumpTime),      // Плавный рост RPS от 1 до 100 за rumpTime секунд
+                        constantUsersPerSec(cntUsers).during(stepTime)         // После этого стабильно 100 RPS
                 )
         ).protocols(httpProtocol);
     }
